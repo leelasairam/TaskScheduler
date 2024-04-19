@@ -1,0 +1,29 @@
+.buttons{
+    padding-top: 0.3rem;
+    padding-bottom: 0.1rem;
+}
+
+
+.container{
+    background-color: white;
+    padding: 0.4rem;
+}
+
+.btn-group{
+    text-align: right;
+}
+
+.filter{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.newtaskbtn{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.continer{
+    border-radius: 8px;
+    background-color: rgba(246, 243, 243, 0.886);
+}
