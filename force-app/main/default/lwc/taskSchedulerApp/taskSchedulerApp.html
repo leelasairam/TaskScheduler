@@ -36,7 +36,7 @@
             <!--New-->
             <lightning-card title="New" if:true={TaskNew} icon-name="standard:record_create">
                 <lightning-button-icon icon-name="action:close" onclick={CloseForm} size="medium" slot="actions"></lightning-button-icon>
-                <lightning-record-edit-form object-api-name="Task_Schedule__c" onsuccess={HandleFormSuccess}>
+                <lightning-record-edit-form object-api-name="Task_Schedule__c" onsuccess={HandleFormSuccess} onload={FormLoad} onerror={HandleFormError} data-action="new">
                     <lightning-messages> </lightning-messages>
                     <lightning-input-field field-name="Task_Name__c"> </lightning-input-field>
                     <lightning-input-field field-name="Category__c"> </lightning-input-field>
@@ -47,7 +47,7 @@
             <!--Edit-->
             <lightning-card title="Edit" if:true={TaskEdit} icon-name="standard:record_update">
                 <lightning-button-icon icon-name="action:close" onclick={CloseForm} size="medium" slot="actions"></lightning-button-icon>
-                <lightning-record-edit-form record-id={RecId} object-api-name="Task_Schedule__c" onsuccess={HandleFormSuccess}>
+                <lightning-record-edit-form record-id={RecId} object-api-name="Task_Schedule__c" onsuccess={HandleFormSuccess} onload={FormLoad} onerror={HandleFormError} data-action="edit">
                     <lightning-messages> </lightning-messages>
                     <lightning-output-field field-name="Name"></lightning-output-field>
                     <lightning-input-field field-name="Task_Name__c"> </lightning-input-field>
@@ -60,7 +60,7 @@
             <!--View-->
             <lightning-card title="View" if:true={TaskView} icon-name="standard:document_preview">
                 <lightning-button-icon icon-name="action:close" onclick={CloseForm} size="medium" slot="actions"></lightning-button-icon>
-                <lightning-record-view-form object-api-name="Task_Schedule__c" record-id={RecId}>
+                <lightning-record-view-form object-api-name="Task_Schedule__c" record-id={RecId} onload={FormLoad}>
                     <lightning-output-field field-name="Name"></lightning-output-field>
                     <lightning-output-field field-name="Task_Name__c"></lightning-output-field>
                     <lightning-output-field field-name="Category__c"></lightning-output-field>

@@ -30,7 +30,7 @@ public class TaskSchedulerController {
 
     @AuraEnabled(Cacheable=True)
     public static list<User> GetUsers(String Email){
-        list<User>users = [SELECT Id,Name,Email FROM User WHERE Email =:Email];
+        list<User>users = [SELECT Id,Name,Email FROM User WHERE Email =:Email AND IsActive = True];
         return users;
     }
 

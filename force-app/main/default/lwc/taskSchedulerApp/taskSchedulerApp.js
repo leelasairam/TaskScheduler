@@ -191,7 +191,7 @@ export default class TaskSchedulerApp extends NavigationMixin(LightningElement){
                     this.ShowToast('Success', 'Ownership changed successfully','Success');
                 })
                 .catch(error => {
-                    console.log(error);
+                    this.ShowToast('Something went wrong', error.body.message, 'error');
                 })
                 this.spin = false;
             }
@@ -231,19 +231,43 @@ export default class TaskSchedulerApp extends NavigationMixin(LightningElement){
     HandleFormSuccess(event){
         let TaskId = event.detail.id;
         this.ShowToast('Success',`Action done successfully Id:${TaskId}`,'success');
+        let action = event.target.dataset.action;
+        if(action==="new"){
+            const inputFields = this.template.querySelectorAll('lightning-input-field');
+            if (inputFields) {
+                inputFields.forEach(field => {
+                field.reset();
+                });
+            }
+        }
+        else{
+            this.TaskView = true;
+            this.TaskEdit = false;
+        }
     }
 
-    ConfigureCompSize(){
+    HandleFormError(event){
+        let message = event.detail.detail;
+        this.ShowToast('Error',message,'error');
+    }
+
+    ConfigureCompSize(btn){
         this.TableSize = 8;this.FormSize = 4;
-        this.spin = true;
-        setTimeout(()=>{
+        if(btn!='filter'){
+            this.spin = true;
+        }
+        /*setTimeout(()=>{
             this.spin = false;
-        },2000)
+        },2000)*/
+    }
+
+    FormLoad(){
+        this.spin = false;
     }
 
     HandleCompVisibility(event){
         const btn = event.target.dataset.btnid;
-        this.ConfigureCompSize();
+        this.ConfigureCompSize(btn);
         this.TaskNew = btn === 'new' ? true : false;
         this.TaskFilter = btn === 'filter' ? true : false;
         this.TaskView = false;
